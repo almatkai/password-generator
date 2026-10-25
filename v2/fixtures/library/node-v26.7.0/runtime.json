@@ -1,0 +1,5 @@
+{
+  "version": "v26.7.0",
+  "source": "Node executable embedded process.binding(\"natives\")[\"internal/crypto/random\"]",
+  "purpose": "primary source evidence for the randomInt interception used by the TS oracle"
+}

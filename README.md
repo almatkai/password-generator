@@ -2,6 +2,8 @@
 
 Generate cryptographically random passwords and memorable passphrases from Tezbar on Windows or macOS.
 
+Native V2 Rust implementation and integration evidence: [v2/README.md](v2/README.md).
+
 ## Commands
 
 - **Generate Random Password** validates a length from 5 to 64, guarantees the selected character groups, and copies the result.

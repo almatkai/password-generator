@@ -1,0 +1,187 @@
+--- a/src-tauri/src/native_core/extensions/v2_runtime.rs
++++ b/src-tauri/src/native_core/extensions/v2_runtime.rs
+@@ -8,7 +8,7 @@
+         .or_else(|| id.strip_prefix("raycast."))
+         .unwrap_or(id);
+     match value {
+-        "amphetamine" | "audio-device" | "cleanshotx" | "color-picker" | "gif-search"
++        "password-generator" | "amphetamine" | "audio-device" | "cleanshotx" | "color-picker" | "gif-search"
+         | "google-calendar" | "google-search" | "port-manager" | "speedtest" | "timers"
+         | "perplexity" => Some(value),
+         _ => None,
+@@ -19,6 +19,7 @@
+ }
+ pub(super) fn commands(slug: &str) -> &'static [&'static str] {
+     match slug {
++        "password-generator" => super::v2_password_generator::commands(),
+         "amphetamine" => super::v2_amphetamine::commands(),
+         "audio-device" => super::v2_audio_device::commands(),
+         "cleanshotx" => super::v2_cleanshotx::commands(),
+@@ -45,6 +46,7 @@
+     state: &mut Value,
+ ) -> CoreResult {
+     match slug {
++        "password-generator" => super::v2_password_generator::handle(ctx, command, operation, payload, state).await,
+         "amphetamine" => {
+             super::v2_amphetamine::handle(ctx, command, operation, payload, state).await
+         }
+--- a/src-tauri/src/native_core/extensions/v2_catalog.json
++++ b/src-tauri/src/native_core/extensions/v2_catalog.json
+@@ -2589,5 +2589,135 @@
+         "state": "not-run"
+       }
+     ]
++  },
++  {
++    "schemaVersion": 2,
++    "id": "com.tezbar.native.password-generator",
++    "slug": "password-generator",
++    "name": "Password Generator",
++    "description": "Generate secure random and memorable passwords.",
++    "version": "0.1.0",
++    "runtime": "rust",
++    "icon": "/extensions/icons/password-generator.png",
++    "replaces": [
++      "raycast.password-generator"
++    ],
++    "platforms": [
++      "macOS",
++      "Windows"
++    ],
++    "preferences": [
++      {
++        "name": "hideAfterCopy",
++        "description": "Return to the root after a password is copied.",
++        "type": "checkbox",
++        "required": false,
++        "default": false,
++        "title": "After Copy",
++        "label": "Return to root"
++      }
++    ],
++    "commands": [
++      {
++        "name": "generate-random-password",
++        "title": "Generate Random Password",
++        "description": "Generate a secure password with configurable character groups.",
++        "mode": "view",
++        "platforms": [
++          "macOS",
++          "Windows"
++        ],
++        "preferences": [
++          {
++            "name": "storePasswordLength",
++            "description": "Remember the last password length between runs.",
++            "type": "checkbox",
++            "required": false,
++            "default": true,
++            "label": "Remember password length"
++          },
++          {
++            "name": "rememberCharacterGroups",
++            "description": "Remember the selected character groups between runs.",
++            "type": "checkbox",
++            "required": false,
++            "default": true,
++            "label": "Remember character groups"
++          }
++        ],
++        "runtime": "rust"
++      },
++      {
++        "name": "copy-random-password",
++        "title": "Copy Random Password",
++        "description": "Generate a random password and copy it immediately.",
++        "mode": "no-view",
++        "platforms": [
++          "macOS",
++          "Windows"
++        ],
++        "preferences": [
++          {
++            "name": "length",
++            "title": "Number of Characters",
++            "description": "Password length from 5 to 64 characters.",
++            "type": "textfield",
++            "required": false,
++            "default": "20"
++          },
++          {
++            "name": "useNumbers",
++            "description": "Include numbers.",
++            "type": "checkbox",
++            "required": false,
++            "default": true,
++            "title": "Character Groups",
++            "label": "Use numbers"
++          },
++          {
++            "name": "useSymbols",
++            "description": "Include special characters.",
++            "type": "checkbox",
++            "required": false,
++            "default": true,
++            "label": "Use symbols"
++          }
++        ],
++        "runtime": "rust"
++      },
++      {
++        "name": "generate-memorable-password",
++        "title": "Generate Memorable Password",
++        "description": "Generate a passphrase from words, numbers, and symbols.",
++        "mode": "view",
++        "platforms": [
++          "macOS",
++          "Windows"
++        ],
++        "preferences": [
++          {
++            "name": "rememberCustomFormat",
++            "description": "Remember the last passphrase format between runs.",
++            "type": "checkbox",
++            "required": false,
++            "default": true,
++            "label": "Remember custom format"
++          }
++        ],
++        "runtime": "rust"
++      }
++    ],
++    "verification": [
++      {
++        "platform": "macOS",
++        "state": "not-run",
++        "note": "Host registration/rebuild/install and real OS QA not run; see README limitations."
++      },
++      {
++        "platform": "Windows",
++        "state": "not-run",
++        "note": "Host registration/rebuild/install and real OS QA not run; see README limitations."
++      }
++    ]
+   }
+ ]
+--- a/src-tauri/src/native_core/extensions/v2_catalog.rs
++++ b/src-tauri/src/native_core/extensions/v2_catalog.rs
+@@ -169,7 +169,7 @@
+     #[test]
+     fn bundled_ids_and_coverage_are_consistent() {
+         let items = manifests();
+-        assert_eq!(items.len(), 11);
++        assert_eq!(items.len(), 12);
+         for item in items {
+             let slug = item["slug"].as_str().unwrap();
+             assert_eq!(item["id"], v2_runtime::canonical_id(slug));
+--- a/src-tauri/src/native_core/extensions/mod.rs
++++ b/src-tauri/src/native_core/extensions/mod.rs
+@@ -14,6 +14,8 @@
+ mod v2_port_manager;
+ mod v2_runtime;
+ mod v2_sdk;
++#[path = "../../../native-extensions/password-generator/src/adapter.rs"]
++mod v2_password_generator;
+ mod v2_speedtest;
+ mod v2_timers;
+ 

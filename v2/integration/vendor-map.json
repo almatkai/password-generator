@@ -1,0 +1,14 @@
+{
+  "compiledModule": "src-tauri/src/native_core/extensions/mod.rs",
+  "moduleDeclaration": "#[path = \"../../../native-extensions/password-generator/src/adapter.rs\"] mod v2_password_generator;",
+  "sourceRoot": "v2/",
+  "destinationRoot": "src-tauri/native-extensions/password-generator/",
+  "exclude": [".work/", "target/", "artifacts/"],
+  "iconSource": "v2/icons/password-generator.png",
+  "iconDestination": "src/renderer/public/extensions/icons/password-generator.png",
+  "registrationBase": "fd300e276356587726566026f072563eb9c34cb1",
+  "registrationPatch": "registration.patch",
+  "currentIconPrerequisiteBase": "fe71ca87f21ac4ff31505010c228f8abda0f2a89",
+  "currentIconPrerequisitePatch": "icon-prerequisite-fe71ca8.patch",
+  "applyAutomatically": false
+}

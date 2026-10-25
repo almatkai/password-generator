@@ -1,0 +1,25 @@
+[package]
+name = "tezbar-password-generator-v2"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+publish = false
+description = "Compiled Native V2 password engine and beta integration for Tezbar"
+repository = "https://github.com/almatkai/password-generator"
+include = ["/src/**", "/examples/**", "/fixtures/**", "/tests/**", "/scripts/**", "/integration/**", "/icons/**", "/Cargo.toml", "/Cargo.lock", "/manifest.json", "/.gitignore", "/README.md", "/PROVENANCE.json", "/INDEX.json", "/LICENSE"]
+
+[dependencies]
+getrandom = "=0.2.17"
+regex = "=1.11.1"
+serde_json = "=1.0.140"
+zeroize = "=1.9.0"
+chacha20poly1305 = "=0.10.1"
+
+[dev-dependencies]
+tokio = { version = "=1.45.1", features = ["rt-multi-thread", "macros", "sync", "time"] }
+tempfile = "=3.19.1"
+base64 = "=0.22.1"
+sha2 = "=0.10.9"
+uuid = { version = "=1.16.0", features = ["v4"] }
+log = "=0.4.27"

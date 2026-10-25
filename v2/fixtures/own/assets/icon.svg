@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Password Generator">
+  <defs><linearGradient id="bg" x1="64" y1="32" x2="448" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient></defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M256 82 400 136v106c0 91-57 155-144 188-87-33-144-97-144-188V136l144-54Z" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="22"/>
+  <circle cx="235" cy="238" r="55" fill="none" stroke="#fff" stroke-width="28"/>
+  <path d="m276 278 88 88m-18-18-28 28m2-60-28 28" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

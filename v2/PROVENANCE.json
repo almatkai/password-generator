@@ -1,0 +1,99 @@
+{
+  "own": {
+    "repository": "https://github.com/almatkai/password-generator",
+    "commit": "ff1ceaa91365533c9ed262c4a4c0cced9aea467d",
+    "baseRef": "origin/main",
+    "behaviorSource": true,
+    "fixtures": "fixtures/own/",
+    "lockedLibraries": {
+      "@scure/bip39": "2.4.0",
+      "@raycast/api": "1.104.25",
+      "tsx": "4.23.12",
+      "typescript": "5.9.3"
+    }
+  },
+  "original": {
+    "repository": "https://github.com/raycast/extensions",
+    "commit": "6734d85992290066fd31a7f5bee3cca3d3545a1a",
+    "extensionPath": "extensions/password-generator",
+    "behaviorSource": false,
+    "manifest": "fixtures/original/package.json",
+    "manifestURL": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/password-generator/package.json",
+    "icon": "fixtures/original/password-generator-icon.png",
+    "iconURL": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/password-generator/assets/password-generator-icon.png",
+    "iconBytes": 17803,
+    "iconSHA256": "7d9f69d316d24698d8dd643a8f2b4a0532b2a71065eb4096a7d39864e1529518",
+    "license": "fixtures/original/LICENSE",
+    "licenseURL": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/LICENSE",
+    "licenseNote": "Extension-local LICENSE request returned 404; retained actual repository-root MIT license and original manifest MIT declaration.",
+    "author": "joshuaiz",
+    "contributors": [
+      "teziovsky",
+      "pernielsentikaer",
+      "hnsn",
+      "yusifaliyevpro",
+      "xmok",
+      "peduarte"
+    ]
+  },
+  "beta": {
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "fixtures": "fixtures/beta/",
+    "source": "Read-only git objects from authorized host; relative fixture paths equal object paths except Cargo.toml.fixture retains original Cargo.toml bytes.",
+    "harnessTransform": "Disable original cfg(test) blocks with cfg(any()); runtime bodies unchanged except additive registration. Tauri emission, public test entropy bytes, and unrelated adapter execution are explicit test seams.",
+    "currentIconRegistryCommit": "fe71ca87f21ac4ff31505010c228f8abda0f2a89",
+    "currentIconRegistryFixture": "fixtures/beta-current/src-tauri/src/native_core/extensions/registry.rs"
+  },
+  "dictionary": {
+    "package": "@scure/bip39",
+    "version": "2.4.0",
+    "archiveURL": "https://registry.npmjs.org/@scure/bip39/-/bip39-2.4.0.tgz",
+    "archive": "fixtures/library/scure-bip39-2.4.0.tgz",
+    "integrity": "sha512-82dxFbZUYboyOf0AXiydsQrFQ5Q4h9mX+O2UkE91ROYmsc0BKMGZLwDmy96Jpa2+vrtoxomjUhy1RPIgH/r2nA==",
+    "integritySource": "Own pnpm-lock.yaml, verified against downloaded npm archive and installed exact package",
+    "wordlist": "fixtures/library/bip39-2.4.0/wordlists/english.js",
+    "derivation": "Require actual locked wordlist, join 2048 entries with LF and one final LF, preserving order into src/english.txt",
+    "license": "fixtures/library/bip39-2.4.0/LICENSE"
+  },
+  "rust": {
+    "lock": "Cargo.lock",
+    "pinEvidence": "fixtures/library/cargo-pins.json",
+    "selectedSourceArchives": [
+      "fixtures/library/getrandom-0.2.17.crate",
+      "fixtures/library/chacha20poly1305-0.10.1.crate",
+      "fixtures/library/zeroize-1.9.0.crate"
+    ],
+    "licenseEvidence": "Available actual crate license/notice files copied from every locked cache package; checksums from Cargo.lock. No full registry source archive."
+  },
+  "oracle": {
+    "engineVectors": 72,
+    "commandScenarios": 18,
+    "source": "Actual own pinned TS/TSX compiled with locked esbuild from tsx dependencies; Node crypto randomInt intercepted to record public deterministic choices/ranges",
+    "runtimeVersion": "v26.7.0",
+    "runtimeEvidence": "fixtures/library/node-v26.7.0/",
+    "reactHarness": "Actual pinned FormRuntime and ExtensionRuntimeSurface with React/react-test-renderer 19.0.0, lock in fixtures/ui/; no browser/OS actions"
+  },
+  "search": {
+    "skill": "/Users/almat/.agents/skills/xerj-search/SKILL.md",
+    "prefix": "ax-13fb795fab97",
+    "initialGeneration": 1,
+    "initialFiles": 12,
+    "initialCodeFiles": 6,
+    "initialIndexedCodeFiles": 6,
+    "initialRecords": 76,
+    "initialComplete": true,
+    "laterArtifactCoverage": "Final reindex failed frozen schema evolution; new V2 coverage incomplete. Exact current-file, INDEX and archive checks used.",
+    "finalReindex": {
+      "complete": false,
+      "exitCode": 1,
+      "scannedFiles": 279,
+      "reason": "Frozen dataset schema cannot accept v2/Cargo.lock as docs; unsupported dataset/schema evolution. No prefix/schema bypass or global restart attempted.",
+      "coverage": "Generation 1 covers original six own source files; new V2 artifacts are not established as indexed. Exact current-file, INDEX and archive checks cover deliverables."
+    }
+  },
+  "verification": {
+    "macOS": "not-run",
+    "Windows": "not-run",
+    "note": "Host registration/rebuild/install and real OS QA not performed. Windows GNU checks do not execute Windows APIs. See README for explicit adaptations and test seams."
+  }
+}
