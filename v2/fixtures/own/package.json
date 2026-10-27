@@ -1,0 +1,138 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "id": "com.tezbar.password-generator",
+  "name": "password-generator",
+  "title": "Password Generator",
+  "description": "Generate secure random and memorable passwords.",
+  "version": "0.1.0",
+  "author": "almatkai",
+  "contributors": [
+    "joshuaiz",
+    "teziovsky",
+    "pernielsentikaer",
+    "hnsn",
+    "yusifaliyevpro",
+    "xmok",
+    "peduarte"
+  ],
+  "icon": "assets/icon.svg",
+  "categories": ["Productivity", "Developer Tools", "Security"],
+  "keywords": ["password", "passphrase", "security", "random"],
+  "license": "MIT",
+  "platforms": ["macOS", "Windows"],
+  "preferences": [
+    {
+      "name": "hideAfterCopy",
+      "description": "Return to the root after a password is copied.",
+      "type": "checkbox",
+      "required": false,
+      "default": false,
+      "title": "After Copy",
+      "label": "Return to root"
+    }
+  ],
+  "commands": [
+    {
+      "name": "generate-random-password",
+      "title": "Generate Random Password",
+      "description": "Generate a secure password with configurable character groups.",
+      "mode": "view",
+      "platforms": ["macOS", "Windows"],
+      "preferences": [
+        {
+          "name": "storePasswordLength",
+          "description": "Remember the last password length between runs.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Remember password length"
+        },
+        {
+          "name": "rememberCharacterGroups",
+          "description": "Remember the selected character groups between runs.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Remember character groups"
+        }
+      ]
+    },
+    {
+      "name": "copy-random-password",
+      "title": "Copy Random Password",
+      "description": "Generate a random password and copy it immediately.",
+      "mode": "no-view",
+      "platforms": ["macOS", "Windows"],
+      "preferences": [
+        {
+          "name": "length",
+          "title": "Number of Characters",
+          "description": "Password length from 5 to 64 characters.",
+          "type": "textfield",
+          "required": false,
+          "default": "20"
+        },
+        {
+          "name": "useNumbers",
+          "description": "Include numbers.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "title": "Character Groups",
+          "label": "Use numbers"
+        },
+        {
+          "name": "useSymbols",
+          "description": "Include special characters.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Use symbols"
+        }
+      ]
+    },
+    {
+      "name": "generate-memorable-password",
+      "title": "Generate Memorable Password",
+      "description": "Generate a passphrase from words, numbers, and symbols.",
+      "mode": "view",
+      "platforms": ["macOS", "Windows"],
+      "preferences": [
+        {
+          "name": "rememberCustomFormat",
+          "description": "Remember the last passphrase format between runs.",
+          "type": "checkbox",
+          "required": false,
+          "default": true,
+          "label": "Remember custom format"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.1",
+    "@scure/bip39": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "tezbar": {
+    "schemaVersion": 1,
+    "platforms": ["macos", "windows"],
+    "linuxStatus": "coming-soon",
+    "repository": "https://github.com/almatkai/password-generator",
+    "upstream": {
+      "repository": "https://github.com/raycast/extensions",
+      "path": "extensions/password-generator",
+      "commit": "6734d85992290066fd31a7f5bee3cca3d3545a1a"
+    }
+  }
+}

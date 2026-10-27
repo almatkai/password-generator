@@ -1,0 +1,27 @@
+--- a/src-tauri/src/native_core/extensions/registry.rs
++++ b/src-tauri/src/native_core/extensions/registry.rs
+@@ -217,6 +217,12 @@
+ 
+ fn icon_path(extension: &Installed) -> Option<String> {
+     let name = fallback(&extension.manifest, "icon", "icon.png");
++    // Compiled bundled resource for this port only; ordinary file policy stays intact.
++    if extension.id == "com.tezbar.native.password-generator"
++        && name == "/extensions/icons/password-generator.png"
++    {
++        return Some(name.into());
++    }
+     if name.starts_with("https://") || name.starts_with("http://") {
+         return Some(name.into());
+     }
+@@ -253,6 +259,11 @@
+     let Some(path) = icon_path(extension) else {
+         return Value::Null;
+     };
++    if extension.id == "com.tezbar.native.password-generator"
++        && path == "/extensions/icons/password-generator.png"
++    {
++        return json!(path);
++    }
+     if path.starts_with("http") {
+         return json!(path);
+     }
